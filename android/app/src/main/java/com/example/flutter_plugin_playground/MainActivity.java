@@ -12,17 +12,15 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 import io.flutter.view.FlutterView;
 
 public class MainActivity extends FlutterActivity {
+  private MethodChannel channel;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    MethodChannel channel;
-
     super.onCreate(savedInstanceState);
     GeneratedPluginRegistrant.registerWith(this);
 
-    // Get all instance methods of MainActivity
     // Prepare channel
-    FlutterView view = getFlutterView();
-    channel = new MethodChannel(view, "playground");
+    channel = new MethodChannel(getFlutterView(), "playground");
     channel.setMethodCallHandler(new MethodChannel.MethodCallHandler() {
       @Override
       public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
